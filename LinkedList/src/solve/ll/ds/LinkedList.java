@@ -124,4 +124,19 @@ public class LinkedList {
         }
         return length;
     }
+
+    public void swapNodes() {
+        Node first = head;
+        if(first == null || first.next == null) {
+            return;
+        }
+        Node second = head.next;
+        while(first.next != null && second.next != null ) {
+            int tempData = first.data;
+            first.data = second.data;
+            second.data = tempData;
+            first = second.next;
+            second = first.next;
+        }
+    }
 }
