@@ -68,4 +68,60 @@ public class LinkedList {
     public Node getHead() {
         return head;
     }
+
+    public void deleteNode(Node toBeDeleted) {
+        Node temp = head;
+        if(temp == toBeDeleted) {
+            head = temp.next;
+            return;
+        }
+        while(temp.next != null && temp.next != toBeDeleted) {
+            temp = temp.next;
+        }
+        if(temp.next == null) {
+            return;
+        }
+        temp.next = toBeDeleted.next;
+    }
+
+    public void deleteFirstOccurrence(int input) {
+        Node temp = head, prevNode = null;
+        if(temp != null && temp.data == input) {
+            head = temp.next;
+            return;
+        }
+        while(temp != null && temp.data != input) {
+            prevNode = temp;
+            temp = temp.next;
+        }
+
+        if(temp == null) {
+            return;
+        }
+
+        prevNode.next = temp.next;
+    }
+
+    public void deleteAtPosition(int position) {
+        Node temp = head, prevNode = null;
+        while(temp != null && position > 0) {
+            prevNode = temp;
+            temp = temp.next;
+            position--;
+        }
+        if(temp == null) {
+            return;
+        }
+        prevNode.next = temp.next;
+    }
+
+    public int size() {
+        Node temp = head;
+        int length = 0;
+        while(temp != null) {
+            length++;
+            temp = temp.next;
+        }
+        return length;
+    }
 }
